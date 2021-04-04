@@ -80,7 +80,7 @@ int main(int argc, char **argv) {
 		for(unsigned int j=1;j<(Nx-1);j++){
 			for(unsigned int k=1;k<(Ny-1);k++){
 				std::cout<<"Solving for ("<<j<<","<<k<<") in space at time t= "<<i<<std::endl;
-				/*
+
 				//Implementing Periodic Boundary Conditions
 				if(k==0&&j==0)
 					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j+Nx-1][k] +
@@ -115,8 +115,7 @@ int main(int argc, char **argv) {
 												C3*phi[j][0] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
 												- C5*phi[j][k]*phi[j][k]*phi[j][k];
 
-				else
-				*/
+				else if((j > 0 && k > 0) || (j<(Nx-1) && k<(Ny-1)))
 					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
 							C3*phi[j][k+1] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
 							- C5*phi[j][k]*phi[j][k]*phi[j][k];
