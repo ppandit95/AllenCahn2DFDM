@@ -16,8 +16,9 @@ int main(int argc, char **argv) {
 	unsigned int dx = 1;//Grid Spacing in xDirection
 	unsigned int dy = 1;//Grid Spacing in yDirection
 	unsigned int radius = 10;//Radius of the initial seed
-	double TimeStep = 0.001;//Temporal step size for Explicit Discretization in time
-	double FinalTimeStep = 100.0;//Final time step of the simulation
+	double TimeStep = 0.01;//Temporal step size
+	double FinalTimeStep = 1.01;//Final time step of the simulation
+
 
 
 	//Material Parameters
@@ -72,21 +73,60 @@ int main(int argc, char **argv) {
 
 	double C5 = (36*gamma*TimeStep)/(tau*epsilon*epsilon);//Coefficient of phi[i][j]*phi[i][j]*phi[i][j] term at time t
 
-	std::cout <<"The Coefficients of FDM Stencil are "<<C1<<" , "<<C2<<" , "<<C3<<" , "<<C4<<" , "<<C5<<std::endl;
-/*
+	//std::cout <<"The Coefficients of FDM Stencil are "<<C1<<" , "<<C2<<" , "<<C3<<" , "<<C4<<" , "<<C5<<std::endl;
+
 
 	for(double i=TimeStep;i<=FinalTimeStep;i+=TimeStep){
-		for(unsigned int j=1;j<Nx-1;j++){
-			for(unsigned int k=1;k<Ny-1;k++){
+		for(unsigned int j=1;j<(Nx-1);j++){
+			for(unsigned int k=1;k<(Ny-1);k++){
 				std::cout<<"Solving for ("<<j<<","<<k<<") in space at time t= "<<i<<std::endl;
-				phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
+				/*
+				//Implementing Periodic Boundary Conditions
+				if(k==0&&j==0)
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j+Nx-1][k] +
+					C3*phi[j][k+1] + C3*phi[j][k+Ny-1] + C4*phi[j][k]*phi[j][k]
+					- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(j==(Nx-1) && k==(Ny-1))
+					phi[j][k] = C1*phi[j][k] + C2*phi[0][k] + C2*phi[j-1][k] +
+										C3*phi[j][0] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+										- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(j==(Nx-1)&&k==0)
+					phi[j][k] = C1*phi[j][k] + C2*phi[0][k] + C2*phi[j-1][k] +
+										C3*phi[j][k+1] + C3*phi[j][k+Ny-1] + C4*phi[j][k]*phi[j][k]
+										- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(j==0 && k==(Ny-1))
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j+Nx-1][k] +
+												C3*phi[j][0] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+												- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(j==0)
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j+Nx-1][k] +
+										C3*phi[j][k+1] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+										- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(j==(Nx-1))
+					phi[j][k] = C1*phi[j][k] + C2*phi[0][k] + C2*phi[j-1][k] +
+												C3*phi[j][k+1] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+												- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(k==0)
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
+												C3*phi[j][k+1] + C3*phi[j][k+Ny-1] + C4*phi[j][k]*phi[j][k]
+												- C5*phi[j][k]*phi[j][k]*phi[j][k];
+				else if(k==(Ny-1))
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
+												C3*phi[j][0] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+												- C5*phi[j][k]*phi[j][k]*phi[j][k];
+
+				else
+				*/
+					phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
 							C3*phi[j][k+1] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
 							- C5*phi[j][k]*phi[j][k]*phi[j][k];
 			}
+
 		}
-		if(i==10.0 || i==20.0 || i==50.0 || i==FinalTimeStep){
+		double time = i/TimeStep;
+		if((int)time % 10 == 0  ){
 			std::cout<<"Writing output at time = "<<i<<std::endl;
-			std::string filename = "Output-" + std::to_string(i) + ".dat";
+			std::string filename = "Output-"+std::to_string(time)+".dat";
 			std::ofstream output(filename);
 			for(unsigned int p=0;p<Nx;p++){
 					for(unsigned int q=0;q<Ny;q++)
@@ -95,8 +135,9 @@ int main(int argc, char **argv) {
 				}
 			output.close();
 		}
+
 	}
-	*/
+
 	for(unsigned int i=0;i<Nx;i++)
 		delete[] phi[Ny];
 	delete[] phi;
