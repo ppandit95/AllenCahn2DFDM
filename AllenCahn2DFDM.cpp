@@ -7,6 +7,7 @@
 #include<iostream>
 #include<cmath>
 #include<fstream>
+#include<string.h>
 
 int main(int argc, char **argv) {
  //Simulation Parameters
@@ -16,8 +17,8 @@ int main(int argc, char **argv) {
 	unsigned int dy = 1;//Grid Spacing in yDirection
 	unsigned int radius = 10;//Radius of the initial seed
 	double TimeStep = 0.001;//Temporal step size for Explicit Discretization in time
-	unsigned int FinalTimeStep = 10000;//Final time step of the simulation
-	unsigned int OutputTimeList[] = {1000,2000,5000,10000};//Array of output time steps
+	double FinalTimeStep = 100.0;//Final time step of the simulation
+
 
 	//Material Parameters
 	double tau = 1.0;
@@ -54,6 +55,48 @@ int main(int argc, char **argv) {
 		write_output<<std::endl;
 	}
 	write_output.close();
+
+
+
+	//Defining Coefficients of FDM Stencil
+
+	double C1 = 1 - ((4*gamma*TimeStep)/(tau*dx*dx)) - ((4*gamma*TimeStep)/(tau*dy*dy))
+					- ((18*gamma*TimeStep)/(tau*epsilon*epsilon)) +
+					((6*L*TimeStep)/tau*epsilon);//Coefficient of phi[i][j] term at time t
+
+	double C2 = (2*gamma*TimeStep)/(tau*dx*dx);//Coefficient of phi[i-1][j] and phi[i+1][j]
+
+	double C3 = (2*gamma*TimeStep)/(tau*dy*dy);//Coefficient of phi[i][j+1] and phi[i][j-1]
+
+	double C4 = ((54*gamma*TimeStep)/(tau*epsilon*epsilon)) - ((6*L*TimeStep)/(tau*epsilon));//Coefficient of phi[i][j]*phi[i][j] term at time t
+
+	double C5 = (36*gamma*TimeStep)/(tau*epsilon*epsilon);//Coefficient of phi[i][j]*phi[i][j]*phi[i][j] term at time t
+
+	std::cout <<"The Coefficients of FDM Stencil are "<<C1<<" , "<<C2<<" , "<<C3<<" , "<<C4<<" , "<<C5<<std::endl;
+/*
+
+	for(double i=TimeStep;i<=FinalTimeStep;i+=TimeStep){
+		for(unsigned int j=1;j<Nx-1;j++){
+			for(unsigned int k=1;k<Ny-1;k++){
+				std::cout<<"Solving for ("<<j<<","<<k<<") in space at time t= "<<i<<std::endl;
+				phi[j][k] = C1*phi[j][k] + C2*phi[j+1][k] + C2*phi[j-1][k] +
+							C3*phi[j][k+1] + C3*phi[j][k-1] + C4*phi[j][k]*phi[j][k]
+							- C5*phi[j][k]*phi[j][k]*phi[j][k];
+			}
+		}
+		if(i==10.0 || i==20.0 || i==50.0 || i==FinalTimeStep){
+			std::cout<<"Writing output at time = "<<i<<std::endl;
+			std::string filename = "Output-" + std::to_string(i) + ".dat";
+			std::ofstream output(filename);
+			for(unsigned int p=0;p<Nx;p++){
+					for(unsigned int q=0;q<Ny;q++)
+						output<<phi[p][q]<<"\t";
+					output<<std::endl;
+				}
+			output.close();
+		}
+	}
+	*/
 	for(unsigned int i=0;i<Nx;i++)
 		delete[] phi[Ny];
 	delete[] phi;
