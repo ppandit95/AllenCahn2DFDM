@@ -26,7 +26,7 @@ void AllenCahnEquation::setup_initial_profile(){
 		for(unsigned int i=49-param.radius;i<=49+param.radius;i++){
 			for(unsigned int j=49-param.radius;j<=49+param.radius;j++){
 				if(sqrt((i-49)*(i-49)+(j-49)*(j-49)) <= param.radius)
-					phi[i][j] = 1.0;
+					phi[i][j] = 3.5;
 			}
 		}
 }
@@ -85,7 +85,7 @@ void AllenCahnEquation::Evolve_on_boundaries(unsigned int j,unsigned int k){
 
 }
 void AllenCahnEquation::Evolve_with_FDM(){
-	for(double t=param.TimeStep;t <= param.FinalTime;t += param.TimeStep){
+	for(double t=param.TimeStep;t < param.FinalTime;t += param.TimeStep){
 		for(unsigned int j=0;j<param.Nx;j++){
 			for(unsigned int k=0;k<param.Ny;k++){
 				if(on_boundary(j,k))

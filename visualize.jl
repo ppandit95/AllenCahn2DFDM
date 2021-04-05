@@ -1,5 +1,5 @@
 using DelimitedFiles
-data1 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Initial_Profile.dat")
+data1 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-100.000000.dat")
 #data2 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-20.000000.dat")
 #data3 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-30.000000.dat")
 #data4 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-40.000000.dat")
@@ -22,3 +22,4 @@ heatmap(data1,c=:greys)
 #eatmap(data8,c=:greys)
 #heatmap(data9,c=:greys)
 #heatmap(data10,c=:greys)
+savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-100.000000.png")

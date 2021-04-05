@@ -6,7 +6,6 @@
  */
 
 #include"AllenCahnEquation.hpp"
-#include"structures.hpp"
 
 int main(int argc,char** argv){
 	AllenCahnEquation task_assignment;
