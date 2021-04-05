@@ -8,6 +8,7 @@
 #ifndef ALLENCAHNEQUATION_HPP_
 #define ALLENCAHNEQUATION_HPP_
 #include "structures.hpp"
+#define PHI_MAX 3.5;
 class AllenCahnEquation{
 private:
 	Parameters param;
@@ -16,6 +17,7 @@ private:
 	double** phi;
 public:
 	AllenCahnEquation();
+	AllenCahnEquation(Parameters params);
 	~AllenCahnEquation();
 	void run();
 	void initialize_field();
@@ -25,7 +27,7 @@ public:
 	void Evolve_with_FDM();
 	void Evolve_on_boundaries(unsigned int j,unsigned int k);
 	bool on_boundary(unsigned int j,unsigned int k);
-	void Output_field(double tStep);
+	void Output_field(unsigned int tStep);
 };
 
 

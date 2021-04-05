@@ -9,6 +9,8 @@
 #include<cmath>
 #include<fstream>
 #include<iostream>
+#include<vector>
+#include<algorithm>
 
 
 void AllenCahnEquation::initialize_field(){
@@ -26,7 +28,7 @@ void AllenCahnEquation::setup_initial_profile(){
 		for(unsigned int i=49-param.radius;i<=49+param.radius;i++){
 			for(unsigned int j=49-param.radius;j<=49+param.radius;j++){
 				if(sqrt((i-49)*(i-49)+(j-49)*(j-49)) <= param.radius)
-					phi[i][j] = 3.5;
+					phi[i][j] = PHI_MAX;
 			}
 		}
 }
@@ -84,8 +86,9 @@ void AllenCahnEquation::Evolve_on_boundaries(unsigned int j,unsigned int k){
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 
 }
+
 void AllenCahnEquation::Evolve_with_FDM(){
-	for(double t=param.TimeStep;t < param.FinalTime;t += param.TimeStep){
+	for(unsigned int t=1;t<=100;t++){
 		for(unsigned int j=0;j<param.Nx;j++){
 			for(unsigned int k=0;k<param.Ny;k++){
 				if(on_boundary(j,k))
@@ -96,18 +99,19 @@ void AllenCahnEquation::Evolve_with_FDM(){
 												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 			}
 		}
-		double tStep = t/param.TimeStep;
-		Output_field(tStep);
+		Output_field(t);
 	}
 }
+
+
 bool AllenCahnEquation::on_boundary(unsigned int j,unsigned int k){
 	if(j==0 || j==param.Nx-1 || k==0 || k==param.Ny-1)
 		return true;
 	else
 		return false;
 }
-void AllenCahnEquation::Output_field(double tStep){
-	if((int)tStep % 10 == 0){
+void AllenCahnEquation::Output_field(unsigned int tStep){
+	if(find(param.steps.begin(),param.steps.end(),tStep) != param.steps.end()){
 		std::cout<<"Writing output at time step = "<<tStep<<std::endl;
 		std::string filename = "Output-"+std::to_string(tStep)+".dat";
 		std::ofstream output(filename);
@@ -127,12 +131,20 @@ AllenCahnEquation::AllenCahnEquation(){
 	param.radius = 10;
 	param.TimeStep = 0.01;
 	param.FinalTime = 1.01;
+	std::vector<unsigned int> v{10,20,50,100};
+	param.steps = v;
 
 	param.tau = 1.0;
 	param.gamma = 1.0;
 	param.epsilon = 4.0;
 	param.L = 1.0;
 
+	initialize_field();
+	initialize_FDMConstants();
+}
+
+AllenCahnEquation::AllenCahnEquation(Parameters params){
+	param = params;
 	initialize_field();
 	initialize_FDMConstants();
 }

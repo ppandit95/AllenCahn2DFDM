@@ -7,17 +7,20 @@
 
 #ifndef STRUCTURES_HPP_
 #define STRUCTURES_HPP_
+#include <vector>
 
 struct Parameters{
 public :
 	//Simulation Parameters
-	unsigned int Nx;//Domain Size in xDirection
-	unsigned int Ny;//Domain Size in YDirection
-	unsigned int dx;//Grid Spacing in xDirection
-	unsigned int dy;//Grid Spacing in yDirection
-	unsigned int radius;//Radius of the initial seed
-	double TimeStep;//Temporal step size
-	double FinalTime;//Final time step of the simulation
+	unsigned int Nx;
+	unsigned int Ny;
+	unsigned int dx;
+	unsigned int dy;
+	unsigned int radius;
+	double TimeStep;
+	double FinalTime;
+	std::vector<unsigned int> steps;//Steps to output
+
 
 	//Material Parameters
 	double tau;
@@ -32,6 +35,7 @@ struct FDM_Constants{
 	double C4;//Coefficient of phi[i][j]*phi[i][j] term at time t
 	double C5;//Coefficient of phi[i][j]*phi[i][j]*phi[i][j] term at time t
 };
+#define PHI_MAX 3.5;
 
 
 
