@@ -7,6 +7,7 @@
 
 #include"AllenCahnEquation.hpp"
 #include"structures.hpp"
+#include <config4cpp/Configuration.h>
 
 
 int main(int argc,char** argv){

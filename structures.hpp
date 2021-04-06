@@ -18,7 +18,7 @@ public :
 	unsigned int dy;
 	unsigned int radius;
 	double TimeStep;
-	double FinalTime;
+	unsigned int FinalTime;
 	std::vector<unsigned int> steps;//Steps to output
 
 

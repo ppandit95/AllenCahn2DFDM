@@ -7,11 +7,13 @@
 
 #ifndef PARAMFACTORY_HPP_
 #define PARAMFACTORY_HPP_
-#include "/usr/lib/config4cpp/include/config4cpp/Configuration.h"
+
 #include<iostream>
+using namespace config4cpp;
+
 
 class ParamFactory{
-	config4cpp::Configuration * cfg = Configuration.create();
+	cfg = new Configuration.create();
 };
 
 
