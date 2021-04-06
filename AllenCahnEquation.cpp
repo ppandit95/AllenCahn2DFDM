@@ -139,14 +139,16 @@ AllenCahnEquation::AllenCahnEquation(){
 	param.tau = 1.0;
 	param.gamma = 1.0;
 	param.epsilon = 4.0;
-	param.L = 1.0;
+	param.L = 0.1;
 
 	initialize_field();
 	initialize_FDMConstants();
 }
 
-AllenCahnEquation::AllenCahnEquation(Parameters params){
+AllenCahnEquation::AllenCahnEquation(Parameters& params){
 	param = params;
+	center[0] = param.Nx%2==0 ? param.Nx/2 - 1 : (param.Nx - 1)/2;
+	center[1] = param.Ny%2==0 ? param.Ny/2 - 1 : (param.Ny - 1)/2;
 	initialize_field();
 	initialize_FDMConstants();
 }

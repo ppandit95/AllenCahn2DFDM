@@ -15,12 +15,18 @@
 
 using namespace config4cpp;
 
+ParamFactory::ParamFactory(){
+	cfg = Configuration::create();
+	scope = "";
+	configFile = "parameters.cfg";
+}
+ParamFactory::~ParamFactory(){
+	cfg->destroy();
+}
 
-
-void ParamFactory::ParseParams(Parameters& param){
-	 cfg = Configuration::create();
-	 scope = "";
-	 configFile = "parameters.cfg";
+Parameters ParamFactory::ParseParams(){
+	Parameters param;
+	StringVector Steps;
 	try{
 		cfg->parse(configFile);
 		param.Nx = cfg->lookupInt(scope,"Nx");
@@ -33,24 +39,21 @@ void ParamFactory::ParseParams(Parameters& param){
 		cfg->lookupList(scope, "steps",Steps);
 		for(unsigned int i=0;i<Steps.length();i++)
 			param.steps.push_back(atoi(Steps[i]));
+		param.tau = cfg->lookupFloat(scope,"tau");
+		param.gamma = cfg->lookupFloat(scope,"gamma");
+		param.epsilon = cfg->lookupFloat(scope,"epsilon");
+		param.L = cfg->lookupFloat(scope,"L");
 		}
 		catch(const ConfigurationException& ex){
 			std::cerr<<ex.c_str()<<std::endl;
 			cfg->destroy();
 		}
-		cfg->destroy();
-
+		std::cout<<"Parsed Successfully...."<<std::endl;
+		return param;
 }
-int main(int argc,char** argv){
-	ParamFactory pf;
-	Parameters par;
-	pf.ParseParams(par);
-	std::cout<<"The parameters are"<<par.Nx<<","
-			<<par.Ny<<","<<par.dx<<","<<par.dy<<","
-			<<par.radius<<","<<par.TimeStep<<","<<par.FinalTime
-			<<","<<par.steps[2]<<std::endl;
 
-}
+
+
 
 
 

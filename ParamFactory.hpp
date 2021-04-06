@@ -9,11 +9,22 @@
 #define PARAMFACTORY_HPP_
 
 #include<iostream>
+#include"config4cpp/Configuration.h"
+#include"structures.hpp"
 using namespace config4cpp;
 
 
 class ParamFactory{
-	cfg = new Configuration.create();
+private:
+	Configuration * cfg;
+	const char* scope;
+	const char* configFile;
+public:
+	ParamFactory();
+	~ParamFactory();
+	Parameters ParseParams();
+
+
 };
 
 
