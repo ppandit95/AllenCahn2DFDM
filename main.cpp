@@ -7,16 +7,16 @@
 
 #include"AllenCahnEquation.hpp"
 #include"structures.hpp"
-#include <config4cpp/Configuration.h>
+#include"ParamFactory.hpp"
 
 
 int main(int argc,char** argv){
-
-
-	//ParamsFactory paramsFactory;
-	//Parameters params = paramsFactory.getParams();
-	AllenCahnEquation task_assignment;
-	task_assignment.run();
+	ParamFactory pf;
+	Parameters param;
+	pf.ParseParams(param);
+	std::cout<<"Parsed parameters are : "<<param.Nx<<","<<param.Ny<<std::endl;
+	//AllenCahnEquation task_assignment(param);
+	//task_assignment.run();
 	return 0;
 }
 // ac -cfg <file>

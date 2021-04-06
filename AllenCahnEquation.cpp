@@ -111,7 +111,7 @@ bool AllenCahnEquation::on_boundary(unsigned int j,unsigned int k){
 		return false;
 }
 void AllenCahnEquation::Output_field(unsigned int tStep){
-	if(find(param.steps.begin(),param.steps.end(),tStep) != param.steps.end()){
+	if(find(param.steps_param.begin(),param.steps_param.end(),tStep) != param.steps_param.end()){
 		std::cout<<"Writing output at time step = "<<tStep<<std::endl;
 		std::string filename = "Output-"+std::to_string(tStep)+".dat";
 		std::ofstream output(filename);
@@ -123,30 +123,10 @@ void AllenCahnEquation::Output_field(unsigned int tStep){
 		output.close();
 	}
 }
-AllenCahnEquation::AllenCahnEquation(){
-	param.Nx = 100;
-	param.Ny = 100;
-	param.dx = 1;
-	param.dy = 1;
-	param.radius = 10;
-	param.TimeStep = 0.01;
-	param.FinalTime = 100;
-	std::vector<unsigned int> v{10,20,50,100};
-	param.steps = v;
+AllenCahnEquation::AllenCahnEquation(Parameters& params){
+	param = params;
 	center[0] = param.Nx%2==0 ? param.Nx/2 - 1 : (param.Nx - 1)/2;
 	center[1] = param.Ny%2==0 ? param.Ny/2 - 1 : (param.Ny - 1)/2;
-
-	param.tau = 1.0;
-	param.gamma = 1.0;
-	param.epsilon = 4.0;
-	param.L = 1.0;
-
-	initialize_field();
-	initialize_FDMConstants();
-}
-
-AllenCahnEquation::AllenCahnEquation(Parameters params){
-	param = params;
 	initialize_field();
 	initialize_FDMConstants();
 }

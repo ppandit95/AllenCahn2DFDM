@@ -1,0 +1,218 @@
+
+
+Tue Apr  6 18:15:48 2021
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.8.0-48-generic (#54~20.04.1-Ubuntu SMP Sat Mar 20 13:40:25 UTC 2021) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'en_IN'.
+
+
+Tue Apr  6 18:15:48 2021
+Command line: TestDisk /debug
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.8.0-48-generic (#54~20.04.1-Ubuntu SMP Sat Mar 20 13:40:25 UTC 2021) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+/dev/sda: LBA, HPA, LBA48 support
+/dev/sda: size       250069680 sectors
+/dev/sda: user_max   250069680 sectors
+/dev/sda: native_max 250069680 sectors
+/dev/sdb: LBA, HPA, LBA48, DCO support
+/dev/sdb: size       1953525168 sectors
+/dev/sdb: user_max   1953525168 sectors
+/dev/sdb: native_max 1953525168 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop20 - 0 B - 0 sectors (RO), sector size=512
+Warning: can't get size for Disk /dev/loop23 - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63, sector size=512 - KINGSTON RBUSNS8180S3128GJ, S/N:50026B76822DFBB1, FW:SBFK61D1
+Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63, sector size=512 - HGST HTS721010A9E630, S/N:JR100XBNJ1993E, FW:JB0OA3U0
+Disk /dev/loop0 - 296 MB / 282 MiB - 578288 sectors (RO), sector size=512
+Disk /dev/loop1 - 295 MB / 281 MiB - 576720 sectors (RO), sector size=512
+Disk /dev/loop10 - 229 MB / 218 MiB - 448496 sectors (RO), sector size=512
+Disk /dev/loop11 - 67 MB / 64 MiB - 131792 sectors (RO), sector size=512
+Disk /dev/loop12 - 228 MB / 217 MiB - 446248 sectors (RO), sector size=512
+Disk /dev/loop13 - 67 MB / 64 MiB - 132648 sectors (RO), sector size=512
+Disk /dev/loop14 - 304 MB / 290 MiB - 595096 sectors (RO), sector size=512
+Disk /dev/loop15 - 147 MB / 140 MiB - 288032 sectors (RO), sector size=512
+Disk /dev/loop16 - 53 MB / 51 MiB - 104496 sectors (RO), sector size=512
+Disk /dev/loop17 - 53 MB / 51 MiB - 104536 sectors (RO), sector size=512
+Disk /dev/loop18 - 33 MB / 32 MiB - 66096 sectors (RO), sector size=512
+Disk /dev/loop19 - 304 MB / 290 MiB - 594816 sectors (RO), sector size=512
+Disk /dev/loop2 - 114 MB / 108 MiB - 223024 sectors (RO), sector size=512
+Disk /dev/loop21 - 309 MB / 295 MiB - 604808 sectors (RO), sector size=512
+Disk /dev/loop22 - 103 MB / 99 MiB - 203056 sectors (RO), sector size=512
+Disk /dev/loop3 - 115 MB / 109 MiB - 225040 sectors (RO), sector size=512
+Disk /dev/loop4 - 33 MB / 32 MiB - 66096 sectors (RO), sector size=512
+Disk /dev/loop5 - 104 MB / 99 MiB - 203184 sectors (RO), sector size=512
+Disk /dev/loop6 - 58 MB / 55 MiB - 113592 sectors (RO), sector size=512
+Disk /dev/loop7 - 58 MB / 55 MiB - 113560 sectors (RO), sector size=512
+Disk /dev/loop8 - 64 MB / 61 MiB - 126408 sectors (RO), sector size=512
+Disk /dev/loop9 - 64 MB / 61 MiB - 126224 sectors (RO), sector size=512
+
+Partition table type (auto): EFI GPT
+Disk /dev/sdb - 1000 GB / 931 GiB - HGST HTS721010A9E630
+Partition table type: EFI GPT
+
+Analyse Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63
+hdr_size=92
+hdr_lba_self=1
+hdr_lba_alt=1953525167 (expected 1953525167)
+hdr_lba_start=34
+hdr_lba_end=1953525134
+hdr_lba_table=2
+hdr_entries=128
+hdr_entsz=128
+Current partition structure:
+ 1 P MS Data                     2048 1048578047 1048576000 [Basic data partition] [Data]
+ 2 P EFI System            1048578048 1049628671    1050624 [EFI System Partition]
+ 3 P MS Data               1258293248 1918529535  660236288 [Basic data partition] [Games]
+ 4 P Windows Recovery Env  1918531584 1953523711   34992128 [Basic data partition]
+ 5 P Linux filesys. data   1049628672 1258293247  208664576
+
+search_part()
+Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63
+NTFS at 0/32/33
+filesystem size           1048576000
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+NTFS part_offset=1048576, part_size=536870912000, sector_size=512
+NTFS partition cannot be added (part_offset<part_size).
+NTFS at 0/32/33
+filesystem size           1048576000
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                     2048 1048578047 1048576000 [Data]
+     NTFS, blocksize=4096, 536 GB / 500 GiB
+FAT32 at 65270/246/1
+FAT1 : 32-1055
+FAT2 : 1056-2079
+start_rootdir : 2080 root cluster : 2
+Data : 2080-1050623
+sectors : 1050624
+cluster_size : 8
+no_of_cluster : 131068 (2 - 131069)
+fat_length 1024 calculated 1024
+set_FAT_info: name from BS used
+
+FAT32 at 65270/246/1
+FAT: cluster=2(0x2), pos=1048580128
+     EFI System            1048578048 1049628671    1050624 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 537 MB / 513 MiB
+
+recover_EXT2: s_block_group_nr=0/795, s_mnt_count=165/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 26083072
+recover_EXT2: part_size 208664576
+Filesystem created: Tue Nov 24 16:37:58 2020
+Last mount time:    Tue Apr  6 09:19:29 2021
+     Linux filesys. data   1049628672 1258293247  208664576
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 106 GB / 99 GiB
+NTFS at 78325/33/45
+filesystem size           660236288
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                598056961 1258293248  660236288
+     NTFS found using backup sector, blocksize=4096, 338 GB / 314 GiB
+NTFS at 78325/33/45
+filesystem size           660236288
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data               1258293248 1918529535  660236288 [Games]
+     NTFS, blocksize=4096, 338 GB / 314 GiB
+NTFS at 119423/17/18
+filesystem size           1918529536
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                     2048 1918531583 1918529536 [Data]
+     NTFS found using backup sector, blocksize=4096, 982 GB / 914 GiB
+NTFS at 119423/17/18
+filesystem size           1918529536
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data               1918531583 3837061118 1918529536
+     NTFS, blocksize=4096, 982 GB / 914 GiB
+This partition ends after the disk limits. (start=1918531583, size=1918529536, end=3837061118, disk end=1953525168)
+NTFS at 119423/17/19
+filesystem size           34992128
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data               1883539457 1918531584   34992128
+     NTFS found using backup sector, blocksize=4096, 17 GB / 16 GiB
+NTFS at 119423/17/19
+filesystem size           34992128
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data               1918531584 1953523711   34992128 [BIOS_RVY]
+     NTFS, blocksize=4096, 17 GB / 16 GiB
+Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63
+Check the harddisk size: HD jumper settings, BIOS detection...
+The harddisk (1000 GB / 931 GiB) seems too small! (< 1964 GB / 1829 GiB)
+The following partition can't be recovered:
+     MS Data               1918531583 3837061118 1918529536
+     NTFS, blocksize=4096, 982 GB / 914 GiB
+
+Results
+     MS Data                     2048 1048578047 1048576000 [Data]
+     NTFS, blocksize=4096, 536 GB / 500 GiB
+     MS Data                     2048 1918531583 1918529536 [Data]
+     NTFS found using backup sector, blocksize=4096, 982 GB / 914 GiB
+     MS Data                598056961 1258293248  660236288
+     NTFS found using backup sector, blocksize=4096, 338 GB / 314 GiB
+     EFI System            1048578048 1049628671    1050624 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 537 MB / 513 MiB
+     Linux filesys. data   1049628672 1258293247  208664576
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 106 GB / 99 GiB
+     MS Data               1258293248 1918529535  660236288 [Games]
+     NTFS, blocksize=4096, 338 GB / 314 GiB
+     MS Data               1883539457 1918531584   34992128
+     NTFS found using backup sector, blocksize=4096, 17 GB / 16 GiB
+     MS Data               1918531584 1953523711   34992128 [BIOS_RVY]
+     NTFS, blocksize=4096, 17 GB / 16 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 1048576000 linear /dev/sdb 2048" | dmsetup create test0
+echo "0 1918529536 linear /dev/sdb 2048" | dmsetup create test1
+echo "0 660236288 linear /dev/sdb 598056961" | dmsetup create test2
+echo "0 1050624 linear /dev/sdb 1048578048" | dmsetup create test3
+echo "0 208664576 linear /dev/sdb 1049628672" | dmsetup create test4
+echo "0 660236288 linear /dev/sdb 1258293248" | dmsetup create test5
+echo "0 34992128 linear /dev/sdb 1883539457" | dmsetup create test6
+echo "0 34992128 linear /dev/sdb 1918531584" | dmsetup create test7

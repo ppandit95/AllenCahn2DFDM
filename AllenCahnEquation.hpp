@@ -16,8 +16,7 @@ private:
 	unsigned int center[2];
 	double** phi;
 public:
-	AllenCahnEquation();
-	AllenCahnEquation(Parameters params);
+	AllenCahnEquation(Parameters& params);
 	~AllenCahnEquation();
 	void run();
 	void initialize_field();

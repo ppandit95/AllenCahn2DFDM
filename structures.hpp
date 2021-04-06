@@ -19,7 +19,7 @@ public :
 	unsigned int radius;
 	double TimeStep;
 	unsigned int FinalTime;
-	std::vector<unsigned int> steps;//Steps to output
+	std::vector<unsigned int> steps_param;
 
 
 	//Material Parameters
