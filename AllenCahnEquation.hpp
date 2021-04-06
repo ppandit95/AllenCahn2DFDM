@@ -13,7 +13,7 @@ class AllenCahnEquation{
 private:
 	Parameters param;
 	FDM_Constants consts;
-	unsigned int node;
+	unsigned int center[2];
 	double** phi;
 public:
 	AllenCahnEquation();

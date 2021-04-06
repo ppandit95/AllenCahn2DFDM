@@ -11,7 +11,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-
+#define PHI_MIN 0.0;
 
 void AllenCahnEquation::initialize_field(){
 	phi = new double* [param.Nx];
@@ -20,14 +20,14 @@ void AllenCahnEquation::initialize_field(){
 	//Initialize the field
 	for(unsigned int i=0;i<param.Nx;i++){
 		for(unsigned int j=0;j<param.Ny;j++)
-			phi[i][j] = 0.0;
+			phi[i][j] = PHI_MIN;
 	}
 }
 
 void AllenCahnEquation::setup_initial_profile(){
-		for(unsigned int i=49-param.radius;i<=49+param.radius;i++){
-			for(unsigned int j=49-param.radius;j<=49+param.radius;j++){
-				if(sqrt((i-49)*(i-49)+(j-49)*(j-49)) <= param.radius)
+		for(unsigned int i=center[0]-param.radius;i<=center[0]+param.radius;i++){
+			for(unsigned int j=center[1]-param.radius;j<=center[1]+param.radius;j++){
+				if(sqrt((i-center[0])*(i-center[0])+(j-center[1])*(j-center[1])) <= param.radius)
 					phi[i][j] = PHI_MAX;
 			}
 		}
@@ -88,7 +88,7 @@ void AllenCahnEquation::Evolve_on_boundaries(unsigned int j,unsigned int k){
 }
 
 void AllenCahnEquation::Evolve_with_FDM(){
-	for(unsigned int t=1;t<=100;t++){
+	for(unsigned int t=1;t<=param.FinalTime;t++){
 		for(unsigned int j=0;j<param.Nx;j++){
 			for(unsigned int k=0;k<param.Ny;k++){
 				if(on_boundary(j,k))
@@ -105,7 +105,7 @@ void AllenCahnEquation::Evolve_with_FDM(){
 
 
 bool AllenCahnEquation::on_boundary(unsigned int j,unsigned int k){
-	if(j==0 || j==param.Nx-1 || k==0 || k==param.Ny-1)
+	if(j==0 || j==(param.Nx-1) || k==0 || k==(param.Ny-1))
 		return true;
 	else
 		return false;
@@ -130,9 +130,11 @@ AllenCahnEquation::AllenCahnEquation(){
 	param.dy = 1;
 	param.radius = 10;
 	param.TimeStep = 0.01;
-	param.FinalTime = 1.01;
+	param.FinalTime = 100;
 	std::vector<unsigned int> v{10,20,50,100};
 	param.steps = v;
+	center[0] = param.Nx%2==0 ? param.Nx/2 - 1 : (param.Nx - 1)/2;
+	center[1] = param.Ny%2==0 ? param.Ny/2 - 1 : (param.Ny - 1)/2;
 
 	param.tau = 1.0;
 	param.gamma = 1.0;

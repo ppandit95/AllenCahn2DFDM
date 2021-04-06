@@ -8,7 +8,10 @@
 #include"AllenCahnEquation.hpp"
 #include"structures.hpp"
 
+
 int main(int argc,char** argv){
+
+
 	//ParamsFactory paramsFactory;
 	//Parameters params = paramsFactory.getParams();
 	AllenCahnEquation task_assignment;
