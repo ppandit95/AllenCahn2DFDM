@@ -5,14 +5,14 @@ A Finite Difference Implementation of Allen Cahn Equation on a square grid using
 
 # Insructions To Run the Program
 
-After downloading the zip of this repository using https://github.com/ppandit95/AllenCahn2DFDM/archive/refs/heads/main.zip ,the program can be run by using command :\
+After downloading the zip of this repository using https://github.com/ppandit95/AllenCahn2DFDM/archive/refs/heads/main.zip ,the program can be run by using command :
 ```
-$ make run\
+$ make run
 ```
 And the output  dat files generated can be visualized by creating a png image with julia by simply running visualize.jl in Julia.\
-Moreover,the Makefile also contains rule for cleaning up all the generated files given by :\
+Moreover,the Makefile also contains rule for cleaning up all the generated files given by :
 ```
-$ make clean\
+$ make clean
 ```
 
 
