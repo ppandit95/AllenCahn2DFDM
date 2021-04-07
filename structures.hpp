@@ -14,8 +14,8 @@ public :
 	//Simulation Parameters
 	unsigned int Nx;
 	unsigned int Ny;
-	unsigned int dx;
-	unsigned int dy;
+	int dx;
+	int dy;
 	unsigned int radius;
 	double TimeStep;
 	unsigned int FinalTime;

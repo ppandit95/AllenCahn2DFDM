@@ -13,7 +13,7 @@
 #include"ParamFactory.hpp"
 #include"structures.hpp"
 #include<cassert>
-
+#include<cmath>
 using namespace config4cpp;
 
 ParamFactory::ParamFactory(){
@@ -31,8 +31,8 @@ Parameters ParamFactory::ParseParams(){
 	bool FileParsingSuccess = false;
 	try{
 		cfg->parse(configFile);
-		param.Nx = cfg->lookupInt(scope,"Nx");
-		param.Ny = cfg->lookupInt(scope,"Ny");
+		param.Nx = fabs(cfg->lookupInt(scope,"Nx"));
+		param.Ny = fabs(cfg->lookupInt(scope,"Ny"));
 		param.dx = cfg->lookupInt(scope,"dx");
 		param.dy = cfg->lookupInt(scope,"dy");
 		param.radius = cfg->lookupInt(scope,"radius");
