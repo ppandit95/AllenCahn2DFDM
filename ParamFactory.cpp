@@ -33,14 +33,14 @@ Parameters ParamFactory::ParseParams(){
 		cfg->parse(configFile);
 		param.Nx = fabs(cfg->lookupInt(scope,"Nx"));
 		param.Ny = fabs(cfg->lookupInt(scope,"Ny"));
-		param.dx = cfg->lookupInt(scope,"dx");
-		param.dy = cfg->lookupInt(scope,"dy");
-		param.radius = cfg->lookupInt(scope,"radius");
+		param.dx = cfg->lookupFloat(scope,"dx");
+		param.dy = cfg->lookupFloat(scope,"dy");
+		param.radius = fabs(cfg->lookupInt(scope,"radius"));
 		param.TimeStep = cfg->lookupFloat(scope, "TimeStep");
-		param.FinalTime = cfg->lookupInt(scope, "FinalTime");
+		param.FinalTime = fabs(cfg->lookupInt(scope, "FinalTime"));
 		cfg->lookupList(scope, "steps",Steps);
 		for(unsigned int i=0;i<Steps.length();i++)
-			param.steps.push_back(atoi(Steps[i]));
+			param.steps.push_back(fabs(atoi(Steps[i])));
 		param.tau = cfg->lookupFloat(scope,"tau");
 		param.gamma = cfg->lookupFloat(scope,"gamma");
 		param.epsilon = cfg->lookupFloat(scope,"epsilon");

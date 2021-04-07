@@ -8,7 +8,7 @@
 #ifndef ALLENCAHNEQUATION_HPP_
 #define ALLENCAHNEQUATION_HPP_
 #include "structures.hpp"
-#define PHI_MAX 3.5;
+#define PHI_MAX 1.0;
 class AllenCahnEquation{
 private:
 	Parameters param;

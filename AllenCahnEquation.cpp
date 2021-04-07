@@ -11,6 +11,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<cassert>
 #define PHI_MIN 0.0;
 
 void AllenCahnEquation::initialize_field(){
@@ -35,6 +36,8 @@ void AllenCahnEquation::setup_initial_profile(){
 
 void AllenCahnEquation::output_initial_profile(){
 		std::ofstream write_output("Initial_Profile.dat");
+		assert(write_output.is_open());
+		write_output.precision(3);
 		for(unsigned int i=0;i<param.Nx;i++){
 			for(unsigned int j=0;j<param.Ny;j++)
 				write_output<<phi[i][j]<<"\t";
@@ -115,6 +118,8 @@ void AllenCahnEquation::Output_field(unsigned int tStep){
 		std::cout<<"Writing output at time step = "<<tStep<<std::endl;
 		std::string filename = "Output-"+std::to_string(tStep)+".dat";
 		std::ofstream output(filename);
+		assert(output.is_open());
+		output.precision(3);
 		for(unsigned int i=0;i<param.Nx;i++){
 			for(unsigned int j=0;j<param.Ny;j++)
 				output<<phi[i][j]<<"\t";
