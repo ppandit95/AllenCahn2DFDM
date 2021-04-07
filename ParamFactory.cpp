@@ -33,6 +33,10 @@ Parameters ParamFactory::ParseParams(){
 		cfg->parse(configFile);
 		param.Nx = fabs(cfg->lookupInt(scope,"Nx"));
 		param.Ny = fabs(cfg->lookupInt(scope,"Ny"));
+		if(param.Nx != param.Ny){
+			std::cout<<"The domain should be square in order to get initial circular seed..."<<std::endl;
+			assert(false);
+		}
 		param.dx = cfg->lookupFloat(scope,"dx");
 		param.dy = cfg->lookupFloat(scope,"dy");
 		param.radius = fabs(cfg->lookupInt(scope,"radius"));
