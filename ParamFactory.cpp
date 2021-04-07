@@ -28,6 +28,7 @@ ParamFactory::~ParamFactory(){
 Parameters ParamFactory::ParseParams(){
 	Parameters param;
 	StringVector Steps;
+	bool FileParsingSuccess = false;
 	try{
 		cfg->parse(configFile);
 		param.Nx = cfg->lookupInt(scope,"Nx");
@@ -47,10 +48,8 @@ Parameters ParamFactory::ParseParams(){
 		}
 		catch(const ConfigurationException& ex){
 			std::cerr<<ex.c_str()<<std::endl;
-			assert(false);
+			assert(FileParsingSuccess);
 			cfg->destroy();
-
-
 		}
 		std::cout<<"Parsed Successfully...."<<std::endl;
 		return param;
