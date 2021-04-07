@@ -129,6 +129,7 @@ void AllenCahnEquation::Output_field(unsigned int tStep){
 	}
 }
 AllenCahnEquation::AllenCahnEquation(){
+	//Default Constructor
 	param.Nx = 100;
 	param.Ny = 100;
 	param.dx = 1;
@@ -163,9 +164,11 @@ AllenCahnEquation::~AllenCahnEquation(){
 		delete[] phi;
 }
 void AllenCahnEquation::run(){
+	Evolve_with_FDM();
+}
+void AllenCahnEquation::setup(){
 	setup_initial_profile();
 	output_initial_profile();
-	Evolve_with_FDM();
 }
 
 

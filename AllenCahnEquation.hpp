@@ -20,6 +20,7 @@ public:
 	AllenCahnEquation(Parameters& params);
 	~AllenCahnEquation();
 	void run();
+	void setup();
 	void initialize_field();
 	void setup_initial_profile();
 	void output_initial_profile();

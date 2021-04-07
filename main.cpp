@@ -15,16 +15,11 @@ int main(int argc,char** argv){
 	ParamFactory pf;
 	Parameters param;
 	param = pf.ParseParams();
-	if(param.Nx != param.Ny){
-		std::cout<<"The domain should be square in order to get initial circular seed..."<<std::endl;
-		assert(false);
-	}
-	//ParamsFactory paramsFactory;
-	//Parameters params = paramsFactory.getParams();
 	AllenCahnEquation task_assignment(param);
+	task_assignment.setup();
 	task_assignment.run();
 	end:return 0;
 }
-// ac -cfg <file>
+
 
 
