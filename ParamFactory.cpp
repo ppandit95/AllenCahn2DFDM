@@ -12,6 +12,7 @@
 #include<string>
 #include"ParamFactory.hpp"
 #include"structures.hpp"
+#include<cassert>
 
 using namespace config4cpp;
 
@@ -46,7 +47,10 @@ Parameters ParamFactory::ParseParams(){
 		}
 		catch(const ConfigurationException& ex){
 			std::cerr<<ex.c_str()<<std::endl;
+			assert(false);
 			cfg->destroy();
+
+
 		}
 		std::cout<<"Parsed Successfully...."<<std::endl;
 		return param;
