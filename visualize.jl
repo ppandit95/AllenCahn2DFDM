@@ -6,5 +6,13 @@ for i in 1:5
 end
  D = [readdlm(data[i]) for i in 1:5]
 for i in 1:5
-    heatmap(D[i],c=:greys)
+    global data[i] =  chop(data[i],head=0,tail=3)
 end
+heatmap(D[1],c=:greys)
+savefig(string(data[1],"png"))
+heatmap(D[2],c=:greys)
+savefig(string(data[2],"png"))
+heatmap(D[3],c=:greys)
+savefig(string(data[3],"png"))
+heatmap(D[4],c=:greys)
+savefig(string(data[4],"png"))
