@@ -9,12 +9,14 @@
 #define ALLENCAHNEQUATION_HPP_
 #include "structures.hpp"
 #define PHI_MAX 1.0;
+#define PHI_MIN 0.0;
 class AllenCahnEquation{
 private:
 	Parameters param;
 	FDM_Constants consts;
 	unsigned int center[2];
 	double** phi;
+	double max=0.0;
 public:
 	AllenCahnEquation();
 	AllenCahnEquation(Parameters& params);

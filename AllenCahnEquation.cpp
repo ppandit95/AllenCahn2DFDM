@@ -12,7 +12,7 @@
 #include<vector>
 #include<algorithm>
 #include<cassert>
-#define PHI_MIN 0.0;
+
 
 void AllenCahnEquation::initialize_field(){
 	phi = new double* [param.Nx];
@@ -100,7 +100,14 @@ void AllenCahnEquation::Evolve_with_FDM(){
 					phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 												consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
+				if(phi[j][k]>=max)
+					max = phi[j][k];
 			}
+		}
+		//Normalizing Loop
+		for(unsigned int a=0;a<param.Nx;a++){
+			for(unsigned int b=0;b<param.Ny;b++)
+				phi[a][b] = phi[a][b] / max;
 		}
 		Output_field(t);
 	}
