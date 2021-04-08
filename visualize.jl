@@ -1,16 +1,10 @@
 using DelimitedFiles,Plots;pyplot()
-data0 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Initial_Profile.dat")
-data1 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-10.dat")
-data2 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-20.dat")
-data5 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-50.dat")
-data10 = readdlm("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-100.dat")
-heatmap(data0,c=:greys)
-savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Initial_Profile.png")
-heatmap(data1,c=:greys)
-savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-10.png")
-heatmap(data2,c=:greys)
-savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-20.png")
-heatmap(data5,c=:greys)
-savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-50.png")
-heatmap(data10,c=:greys)
-savefig("/home/pushkar/Task_assignment_pics/AllenCahn2DFDM/Output-100.png")
+data = ["Initial_Profile.dat" "Output-10.dat" "Output-20.dat" "Output-50.dat" "Output-100.dat"]
+dfp = @__DIR__
+for i in 1:5
+    global data[i]=string(dfp,"/",data[i])
+end
+ D = [readdlm(data[i]) for i in 1:5]
+for i in 1:5
+    heatmap(D[i],c=:greys)
+end
