@@ -31,6 +31,7 @@ public:
 	void Evolve_on_boundaries(unsigned int j,unsigned int k);
 	bool on_boundary(unsigned int j,unsigned int k);
 	void Output_field(unsigned int tStep);
+	void normalize();
 };
 
 

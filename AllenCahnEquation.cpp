@@ -104,11 +104,8 @@ void AllenCahnEquation::Evolve_with_FDM(){
 					max = phi[j][k];
 			}
 		}
-		//Normalizing Loop
-		for(unsigned int a=0;a<param.Nx;a++){
-			for(unsigned int b=0;b<param.Ny;b++)
-				phi[a][b] = phi[a][b] / max;
-		}
+
+		normalize();
 		Output_field(t);
 	}
 }
@@ -178,4 +175,12 @@ void AllenCahnEquation::setup(){
 	output_initial_profile();
 }
 
+void AllenCahnEquation::normalize(){
+	//Normalizing Loop
+	for(unsigned int a=0;a<param.Nx;a++){
+		for(unsigned int b=0;b<param.Ny;b++)
+			phi[a][b] = phi[a][b] / max;
+	}
+
+}
 
