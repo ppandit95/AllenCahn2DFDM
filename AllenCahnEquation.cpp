@@ -90,7 +90,7 @@ void AllenCahnEquation::Evolve_on_boundaries(unsigned int j,unsigned int k){
 
 }
 
-void AllenCahnEquation::Evolve_with_FDM(){
+void AllenCahnEquation::Evolve_with_FDM(){ //Evolution with Explicit Euler Method
 	for(unsigned int t=1;t<=param.FinalTime;t++){
 		for(unsigned int j=0;j<param.Nx;j++){
 			for(unsigned int k=0;k<param.Ny;k++){
