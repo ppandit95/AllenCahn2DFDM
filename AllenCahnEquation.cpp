@@ -100,11 +100,10 @@ void AllenCahnEquation::Evolve_with_FDM(){
 					phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 												consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
-				if(phi[j][k]>=max)
+				if(phi[j][k]>max)
 					max = phi[j][k];
 			}
 		}
-
 		normalize();
 		Output_field(t);
 	}
@@ -119,7 +118,7 @@ bool AllenCahnEquation::on_boundary(unsigned int j,unsigned int k){
 }
 void AllenCahnEquation::Output_field(unsigned int tStep){
 	if(find(param.steps.begin(),param.steps.end(),tStep) != param.steps.end()){
-		std::cout<<"Writing output at time step = "<<tStep<<std::endl;
+		std::cout<<"Writing output at time = "<<(tStep*param.TimeStep)<<std::endl;
 		std::string filename = "Output-"+std::to_string(tStep)+".dat";
 		std::ofstream output(filename);
 		assert(output.is_open());
@@ -181,6 +180,5 @@ void AllenCahnEquation::normalize(){
 		for(unsigned int b=0;b<param.Ny;b++)
 			phi[a][b] = phi[a][b] / max;
 	}
-
 }
 

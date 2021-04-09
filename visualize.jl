@@ -1,5 +1,5 @@
 using DelimitedFiles,Plots;pyplot()
-data = ["Initial_Profile.dat" "Output-10.dat" "Output-20.dat" "Output-50.dat" "Output-100.dat"]
+data = ["Initial_Profile.dat" "Output-10000.dat" "Output-20000.dat" "Output-50000.dat" "Output-100000.dat"]
 dfp = @__DIR__
 for i in 1:5
     global data[i]=string(dfp,"/",data[i])
@@ -16,3 +16,5 @@ heatmap(D[3],c=:greys)
 savefig(string(data[3],"png"))
 heatmap(D[4],c=:greys)
 savefig(string(data[4],"png"))
+heatmap(D[5],c=:greys)
+savefig(string(data[5],"png"))

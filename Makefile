@@ -7,4 +7,4 @@ AllenCahn : main.cpp AllenCahnEquation.o AllenCahnEquation.hpp structures.hpp Pa
 run : AllenCahn
 	./AllenCahn -cfg parameters.cfg
 clean : 
-	rm Output-* Initial_Profile.dat AllenCahn *.o
+	rm Output-* Initial_Profile.* AllenCahn *.o 

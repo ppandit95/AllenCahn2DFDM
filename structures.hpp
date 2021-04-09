@@ -35,7 +35,7 @@ struct FDM_Constants{
 	double C4;//Coefficient of phi[i][j]*phi[i][j] term at time t
 	double C5;//Coefficient of phi[i][j]*phi[i][j]*phi[i][j] term at time t
 };
-#define PHI_MAX 1.0;
+
 
 
 
