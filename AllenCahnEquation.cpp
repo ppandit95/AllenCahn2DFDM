@@ -16,12 +16,17 @@
 
 void AllenCahnEquation::initialize_field(){
 	phi = new double* [param.Nx];
-	for(unsigned int i=0;i<param.Nx;i++)
+	phitilde = new double* [param.Nx];
+	for(unsigned int i=0;i<param.Nx;i++){
 		phi[i] = new double [param.Ny];
+		phitilde[i] = new double [param.Ny];
+	}
 	//Initialize the field
 	for(unsigned int i=0;i<param.Nx;i++){
-		for(unsigned int j=0;j<param.Ny;j++)
+		for(unsigned int j=0;j<param.Ny;j++){
 			phi[i][j] = PHI_MIN;
+			phitilde[i][j] = PHI_MIN;
+		}
 	}
 }
 
@@ -56,35 +61,35 @@ void AllenCahnEquation::initialize_FDMConstants(){
 }
 void AllenCahnEquation::Evolve_on_boundaries(unsigned int j,unsigned int k){
 	if(k==0&&j==0)
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
 					consts.C3*phi[j][k+1] + consts.C3*phi[j][k+param.Ny-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(j==(param.Nx-1) && k==(param.Ny-1))
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
 					consts.C3*phi[j][0] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(j==(param.Nx-1)&&k==0)
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
 					consts.C3*phi[j][k+1] + consts.C3*phi[j][k+param.Ny-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(j==0 && k==(param.Ny-1))
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
 					consts.C3*phi[j][0] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(j==0)
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j+param.Nx-1][k] +
 					consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 				    - consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(j==(param.Nx-1))
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[0][k] + consts.C2*phi[j-1][k] +
 					consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(k==0)
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 					consts.C3*phi[j][k+1] + consts.C3*phi[j][k+param.Ny-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 	else if(k==(param.Ny-1))
-		phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
+		phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 					consts.C3*phi[j][0] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 					- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
 
@@ -97,12 +102,19 @@ void AllenCahnEquation::Evolve_with_FDM(){ //Evolution with Explicit Euler Metho
 				if(on_boundary(j,k))
 					Evolve_on_boundaries(j, k);
 				else
-					phi[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
+					phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 												consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
-												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];
-				if(phi[j][k]>max)
-					max = phi[j][k];
+												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];//Storing the computed values in temporary variable phitilde
+				if(phitilde[j][k]>max)
+					max = phitilde[j][k];
 			}
+		}
+
+		//Transferring the computed values of phitilde in phi so that can be used for next time intervel
+
+		for(unsigned int k=0;k<param.Nx;k++){
+			for(unsigned int l=0;l<param.Ny;l++)
+				phi[k][l] = phitilde[k][l];
 		}
 		normalize();
 		Output_field(t);
@@ -138,9 +150,9 @@ AllenCahnEquation::AllenCahnEquation(){
 	param.dx = 1;
 	param.dy = 1;
 	param.radius = 10;
-	param.TimeStep = 0.01;
-	param.FinalTime = 100;
-	std::vector<unsigned int> v{10,20,50,100};
+	param.TimeStep = 0.1;
+	param.FinalTime = 1000;
+	std::vector<unsigned int> v{100,200,500,1000};
 	param.steps = v;
 	center[0] = param.Nx%2==0 ? param.Nx/2 - 1 : (param.Nx - 1)/2;
 	center[1] = param.Ny%2==0 ? param.Ny/2 - 1 : (param.Ny - 1)/2;
@@ -162,9 +174,12 @@ AllenCahnEquation::AllenCahnEquation(Parameters& params){
 	initialize_FDMConstants();
 }
 AllenCahnEquation::~AllenCahnEquation(){
-	for(unsigned int i=0;i<param.Nx;i++)
+	for(unsigned int i=0;i<param.Nx;i++){
 			delete[] phi[param.Ny];
-		delete[] phi;
+			delete[] phitilde[param.Ny];
+	}
+	delete[] phitilde;
+	delete[] phi;
 }
 void AllenCahnEquation::run(){
 	Evolve_with_FDM();

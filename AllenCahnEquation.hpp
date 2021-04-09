@@ -17,6 +17,7 @@ private:
 	unsigned int center[2];
 	double** phi;
 	double max=0.0;
+	double** phitilde;//Variable to store updated value at each time step which is transfered to phi
 public:
 	AllenCahnEquation();
 	AllenCahnEquation(Parameters& params);

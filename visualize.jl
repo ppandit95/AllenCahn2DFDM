@@ -1,6 +1,7 @@
 using DelimitedFiles,Plots;pyplot()
-data = ["Initial_Profile.dat" "Output-2500.dat" "Output-5000.dat" "Output-12500.dat" "Output-25000.dat"]
+data = ["Initial_Profile.dat" "Output-100.dat" "Output-200.dat" "Output-500.dat" "Output-1000.dat" ]
 dfp = @__DIR__
+
 for i in 1:5
     global data[i]=string(dfp,"/",data[i])
 end
