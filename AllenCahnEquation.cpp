@@ -105,8 +105,7 @@ void AllenCahnEquation::Evolve_with_FDM(){ //Evolution with Explicit Euler Metho
 					phitilde[j][k] = consts.C1*phi[j][k] + consts.C2*phi[j+1][k] + consts.C2*phi[j-1][k] +
 												consts.C3*phi[j][k+1] + consts.C3*phi[j][k-1] + consts.C4*phi[j][k]*phi[j][k]
 												- consts.C5*phi[j][k]*phi[j][k]*phi[j][k];//Storing the computed values in temporary variable phitilde
-				if(phitilde[j][k]>max)
-					max = phitilde[j][k];
+
 			}
 		}
 
@@ -116,7 +115,7 @@ void AllenCahnEquation::Evolve_with_FDM(){ //Evolution with Explicit Euler Metho
 			for(unsigned int l=0;l<param.Ny;l++)
 				phi[k][l] = phitilde[k][l];
 		}
-		normalize();
+
 		Output_field(t);
 	}
 }
@@ -189,11 +188,5 @@ void AllenCahnEquation::setup(){
 	output_initial_profile();
 }
 
-void AllenCahnEquation::normalize(){
-	//Normalizing Loop
-	for(unsigned int a=0;a<param.Nx;a++){
-		for(unsigned int b=0;b<param.Ny;b++)
-			phi[a][b] = phi[a][b] / max;
-	}
-}
+
 

@@ -16,7 +16,6 @@ private:
 	FDM_Constants consts;
 	unsigned int center[2];
 	double** phi;
-	double max=0.0;
 	double** phitilde;//Variable to store updated value at each time step which is transfered to phi
 public:
 	AllenCahnEquation();
@@ -32,7 +31,7 @@ public:
 	void Evolve_on_boundaries(unsigned int j,unsigned int k);
 	bool on_boundary(unsigned int j,unsigned int k);
 	void Output_field(unsigned int tStep);
-	void normalize();
+
 };
 
 
