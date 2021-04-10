@@ -9,6 +9,10 @@ After downloading the zip of this repository using https://github.com/ppandit95/
 ```
 $ make run
 ```
+After execution of program, the generated output can be visualized by julia using the folloing command :
+```
+julia visualize.jl
+```
 And the output  dat files generated can be visualized by creating a png image with julia by simply running visualize.jl in Julia.\
 Moreover,the Makefile also contains rule for cleaning up all the generated files given by :
 ```
